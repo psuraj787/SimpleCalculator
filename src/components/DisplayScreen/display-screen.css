@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'digital';
+  src: local('digital'), url(../../../public/fonts/digital-7.ttf) format('truetype');
+}
+
+.display {
+  display: block;
+  width: 200px;
+  padding: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: x-large;
+  font-family: digital;
+  height: 45px;
+  border-radius: 10px;
+  box-shadow: 1px 5px 8px #888888;
+  margin-bottom: 10px;
+}
