@@ -24,15 +24,7 @@ $button-shadow-active: $button-shadow-base, $shadow-inset-active;
 *:after {
   box-sizing: border-box;
 }
-body {
-  margin: 0;
-  padding: 30px;
-  background: $background;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 button {
   user-select: none;
   display: flex;
@@ -56,31 +48,58 @@ button {
   width: 50px;
   height: 50px;
 
-&::-moz-focus-inner {
-  border: 0;
-}
-& > * {
-  transition: transform 0.2s ease;
-}
-&:hover:not([disabled]) {
-  box-shadow: $button-shadow-hover;
-}
-& > * {
-  transform: scale(0.975);
-}
-&:active:not([disabled]) {
-  box-shadow: $button-shadow-active;
-}
-& > * {
-  transform: scale(0.95);
-}
+  &::-moz-focus-inner {
+    border: 0;
+  }
+  & > * {
+    transition: transform 0.2s ease;
+  }
+  &:hover:not([disabled]) {
+    box-shadow: $button-shadow-hover;
+  }
+  & > * {
+    transform: scale(0.975);
+  }
+  &:active:not([disabled]) {
+    box-shadow: $button-shadow-active;
+  }
+  & > * {
+    transform: scale(0.95);
+  }
 }
 
 .number-grid {
-  width: 200px;
   gap: 8px;
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 3px;
   justify-content: center;
+}
+
+.numpad-container {
+  display: flex;
+  width: 230px;
+  align-self: center;
+  justify-content: space-between;
+}
+
+.operation-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 3px;
+}
+
+.control-grid {
+  display: flex;
+  gap: 8px;
+  padding: 3px;
+}
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  align-self: center;
+  justify-content: space-between;
 }

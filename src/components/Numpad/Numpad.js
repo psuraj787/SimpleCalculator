@@ -18,22 +18,45 @@ export const Numpad = (props) => {
     });
   };
 
-  const onAddClick = () => {
+  const operationHandler = (event) => {
+    const operator = event.target.value;
     if (numItem) {
       setResult(result + +numItem);
       setCalculationTrace(
-        calculationTrace.length > 0 ? calculationTrace + "+" : calculationTrace
+        calculationTrace.length > 0
+          ? calculationTrace + operator
+          : calculationTrace
       );
       setNumItem("");
     }
   };
 
+  const squareRootHandler = () => {
+    if (numItem) {
+      setNumItem(Math.sqrt(numItem));
+      setCalculationTrace(Math.sqrt(numItem));
+    }
+  };
+
+  const percentHandler = () => {
+    if (numItem) {
+      setNumItem(numItem / 100);
+      setCalculationTrace(numItem / 100);
+    }
+  };
+
+  const clearHandler = (event) => {
+    setNumItem("");
+    setCalculationTrace("");
+    setResult(0);
+  };
+
   const onCalculateClick = () => {
-    if (calculationTrace) {
+    if (!isNaN(`${calculationTrace[calculationTrace.length - 1]}`)) {
       const calc = eval(calculationTrace);
       setResult(calc);
       setCalculationTrace(calc.toString());
-      setNumItem(calc);
+      setNumItem(calc.toString());
     }
   };
 
@@ -42,22 +65,76 @@ export const Numpad = (props) => {
   }, [calculationTrace, result, numItem, props]);
 
   return (
-    <div className="number-grid">
-      {numbers.map((item) => {
-        return (
-          <Button
-            num={item}
-            key={Math.random().toString(16).slice(2)}
-            getButtonData={getNumberItems}
-          />
-        );
-      })}
-      <button type="button" name="addBtn" onClick={onAddClick}>
-        {'+'}
-      </button>
-      <button type="button" name="resultBtn" onClick={onCalculateClick}>
-        {'='}
-      </button>
+    <div className="main-container">
+      <div className="control-grid">
+        <button type="button" name="sqrtBtn" onClick={squareRootHandler}>
+          &#8730;
+        </button>
+        <button type="button" name="prcntBtn" onClick={percentHandler}>
+          &#37;
+        </button>
+        <button
+          type="button"
+          name="clrLastBtn"
+          onClick={clearHandler}
+          value="ce"
+        >
+          {"CE"}
+        </button>
+        <button type="button" name="clrBtn" onClick={clearHandler} value="c">
+          {"C"}
+        </button>
+      </div>
+      <div className="numpad-container">
+        <div className="number-grid">
+          {numbers.map((item) => {
+            return (
+              <Button
+                num={item}
+                key={Math.random().toString(16).slice(2)}
+                getButtonData={getNumberItems}
+              />
+            );
+          })}
+          <button type="button" name="resultBtn" onClick={onCalculateClick}>
+            &#61;
+          </button>
+        </div>
+        <div className="operation-grid">
+          <button
+            type="button"
+            name="divideBtn"
+            onClick={operationHandler}
+            value="/"
+          >
+            &#247;
+          </button>
+          <button
+            type="button"
+            name="multiplyBtn"
+            onClick={operationHandler}
+            value="*"
+          >
+            &#215;
+          </button>
+          <button
+            type="button"
+            name="subtractBtn"
+            onClick={operationHandler}
+            value="-"
+          >
+            &#8722;
+          </button>
+          <button
+            type="button"
+            name="addBtn"
+            onClick={operationHandler}
+            value="+"
+          >
+            &#43;
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

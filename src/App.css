@@ -2,4 +2,11 @@
   margin: auto;
   width: fit-content;
   margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid gray;
+  padding: 8px;
+  border-radius: 16px;
+  background-color: floralwhite;
 }
