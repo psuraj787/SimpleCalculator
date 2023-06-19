@@ -6,9 +6,18 @@ function App() {
   const [displayNum, setDisplayNum] = useState("");
 
   return (
-    <div className="app-container">
-      <DisplayScreen trace={displayNum} />
-      <Numpad onGetDisplayNum={setDisplayNum} />
+    <div>
+    <div>
+      <nav className="navbar navbar-dark bg-dark">
+        <a className="navbar-brand" href="#">
+          Simple Calculator
+        </a>
+      </nav>
+      </div>
+      <div className="app-container">
+        <DisplayScreen trace={displayNum} />
+        <Numpad onGetDisplayNum={setDisplayNum} />
+      </div>
     </div>
   );
 }
